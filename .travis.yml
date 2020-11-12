@@ -5,4 +5,15 @@ service:
     #before_install:
     #  - docker-compose build -t  shahu .
 script:
-  - docker-compose up -d 
+  - docker-compose up -d
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "python"
+  env: "python-env"
+  bucket_name: "elasticbeanstalk-us-east-2-476574668272"
+  bucket_path: "python"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $$AWS_SECRET_KEY 
